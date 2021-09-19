@@ -58,6 +58,8 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
@@ -380,7 +382,9 @@ public class InventorySetupsPluginPanel extends PluginPanel
 			{
 				if (SwingUtilities.isLeftMouseButton(e))
 				{
-					returnToOverviewPanel(false);
+					setSearchBarText("");
+					rebuild(false);
+					requestFocusToSearchBar();
 				}
 			}
 
@@ -452,10 +456,36 @@ public class InventorySetupsPluginPanel extends PluginPanel
 			@Override
 			public void keyReleased(KeyEvent e)
 			{
-				rebuild(true);
+				if (e.getKeyCode() == KeyEvent.VK_ENTER)
+				{
+					final List<InventorySetup> setupsToAdd = plugin.filterSetups(searchBar.getText());
+					if (setupsToAdd.size() > 0)
+					{
+						setCurrentInventorySetup(setupsToAdd.get(0), true);
+					}
+				}
+				else
+				{
+					rebuild(true);
+				}
+
 			}
 		});
 		searchBar.addClearListener(() -> rebuild(true));
+		searchBar.addFocusListener(new FocusListener()
+		{
+			@Override
+			public void focusGained(FocusEvent e)
+			{
+				System.out.println("Focus Gained");
+			}
+
+			@Override
+			public void focusLost(FocusEvent e)
+			{
+				System.out.println("Focus Lost");
+			}
+		});
 
 		// the panel that stays at the top and doesn't scroll
 		// contains the title and buttons
@@ -691,6 +721,16 @@ public class InventorySetupsPluginPanel extends PluginPanel
 
 		currentSelectedSetup = null;
 		plugin.resetBankSearch(true);
+	}
+
+	public void requestFocusToSearchBar()
+	{
+		//searchBar.requestFocusInWindow();
+	}
+
+	public void setSearchBarText(final String text)
+	{
+		searchBar.setText(text);
 	}
 
 	public boolean isStackCompareForSlotAllowed(final InventorySetupsSlotID inventoryID, final int slotId)
