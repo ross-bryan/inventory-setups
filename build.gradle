@@ -1,6 +1,6 @@
 plugins {
 	id 'java'
-	//id "com.github.johnrengelman.shadow" version "5.2.0"
+	id "com.github.johnrengelman.shadow" version "5.2.0"
 }
 
 repositories {
@@ -12,7 +12,7 @@ repositories {
 }
 
 
-def runeLiteVersion = '1.7.22'
+def runeLiteVersion = '1.7.26'
 dependencies {
 	compileOnly group: 'net.runelite', name:'client', version: runeLiteVersion
 
@@ -49,11 +49,13 @@ task createProperties(dependsOn: processResources) {
 classes {
 	dependsOn createProperties
 }
-
-//shadowJar {
-//	from sourceSets.test.output
-//	configurations = [project.configurations.testRuntimeClasspath]
-//	manifest {
-//		attributes "Main-Class": "inventorysetups.InventorySetupsPluginTest"
-//	}
-//}
+// To create a shadow jar, run gradlew shadowJar
+// Output will be in build/libs
+// Run it with java -jar <name>.jar
+shadowJar {
+	from sourceSets.test.output
+	configurations = [project.configurations.testRuntimeClasspath]
+	manifest {
+		attributes "Main-Class": "inventorysetups.InventorySetupsPluginTest"
+	}
+}

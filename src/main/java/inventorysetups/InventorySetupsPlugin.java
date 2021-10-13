@@ -1799,6 +1799,7 @@ public class InventorySetupsPlugin extends Plugin
 	private void loadConfig()
 	{
 		final String storedSetups = configManager.getConfiguration(CONFIG_GROUP, CONFIG_KEY_SETUPS);
+		log.info("Loading config...");
 		if (Strings.isNullOrEmpty(storedSetups))
 		{
 			inventorySetups = new ArrayList<>();
@@ -1820,6 +1821,8 @@ public class InventorySetupsPlugin extends Plugin
 			}
 			catch (Exception e)
 			{
+				log.error(e.getMessage());
+				System.out.println(e.getMessage());
 				inventorySetups = new ArrayList<>();
 			}
 		}
