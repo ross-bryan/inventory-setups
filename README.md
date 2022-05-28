@@ -4,6 +4,28 @@
 
 Save gear setups for specific activities.
 
+## TOC
+- [Inventory Setups](#inventory-setups)
+    + [Creating a New Setup](#creating-a-new-setup)
+    + [Overview Panel](#overview-panel)
+      - [Viewing a Setup](#viewing-a-setup)
+      - [Sorting Modes](#sorting-modes)
+      - [Moving a Setup](#moving-a-setup)
+      - [Favorites](#favorites)
+    + [Editing a Setup](#editing-a-setup)
+    + [Bank Filtering](#bank-filtering)
+    + [Highlighting](#highlighting)
+        * [Stack Difference](#stack-difference)
+        * [Fuzzy Difference](#fuzzy-difference)
+        * [Unordered Highlighting](#unordered-highlighting)
+    + [Additional Filtered Items](#additional-filtered-items)
+    + [Exporting and Importing Setups](#exporting-and-importing-setups)
+    + [Configuration Settings](#configuration-settings)
+    + [Bank Tag Layouts Plugin](#bank-tag-layouts-plugin)
+    + [Compatibility with Bank Tags](#compatibility-with-bank-tags)
+    + [Support and Suggestions](#support-and-suggestions)
+    + [Changelog](#changelog)
+
 ### Creating a New Setup
 
 To start, turn on the plugin and click on the equipment panel icon on the sidebar.
